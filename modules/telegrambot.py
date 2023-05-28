@@ -25,8 +25,9 @@ class TelegramBot(ChatBot):
             user = update.effective_user
             username = clean_username(user.full_name)
             print(f"User {username} executed /reset command.")
+            self.db.remove_conversation(update.effective_chat.id)
+            await update.message.reply_text(f"{self.config.CONSOLE_RESET_MSG}")
             # TODO: remove this print statement and log to database instead
-            # TODO: implement reset command
 
         async def pic_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             user = update.effective_user
