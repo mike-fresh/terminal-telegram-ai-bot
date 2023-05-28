@@ -1,0 +1,42 @@
+import os
+from dotenv import load_dotenv
+load_dotenv()
+
+
+class Config:
+    def __init__(self):
+        self.OPENAI_API_KEY = os.getenv("OPENAI_API_KEY")
+        self.TELEGRAM_BOT_TOKEN = os.getenv("TELEGRAM_BOT_TOKEN")
+        self.TELEGRAM_STARTED_MESSAGE = os.getenv("TELEGRAM_STARTED_MESSAGE")
+        self.TELEGRAM_STOPPED_MESSAGE = os.getenv("TELEGRAM_STOPPED_MESSAGE")
+        self.TELEGRAM_START_MESSAGE = os.getenv("TELEGRAM_START_MESSAGE")
+        self.TELEGRAM_HELP_MESSAGE = os.getenv("TELEGRAM_HELP_MESSAGE")
+        self.MODEL = os.getenv("MODEL")
+        self.MAX_TOKENS = int(os.getenv("MAX_TOKENS"))
+        self.MAX_TOKENS_SUMMARY = int(os.getenv("MAX_TOKENS_SUMMARY"))
+        self.NAME = os.getenv("NAME")
+        self.SYSTEM_PROMPT = os.getenv("SYSTEM_PROMPT")
+        self.TEMPERATURE = float(os.getenv("TEMPERATURE"))
+        self.BYE_MESSAGE = os.getenv("BYE_MESSAGE")
+        self.MY_NAME_IS: str = os.environ.get("MY_NAME_IS")
+        self.LOCAL_USERNAME: str = os.environ.get("LOCAL_USERNAME")
+        self.CONNECTION_MAX_TRIES: str = os.environ.get("CONNECTION_MAX_TRIES")
+        self.CONNECTION_ERROR_MESSAGE: str = os.environ.get("CONNECTION_ERROR_MESSAGE")
+        self.DB_NAME: str = os.environ.get("DB_NAME")
+        self.DB_PATH: str = os.environ.get("DB_PATH")
+        self.DB_FULL_NAME: str = os.path.join(self.DB_PATH, self.DB_NAME)
+        self.DB_URI: str = f'sqlite:///{self.DB_FULL_NAME}'
+        self.ARG_PARSER_INFO: str = os.environ.get("ARG_PARSER_INFO")
+        self.LOG_MSG_PREFIX: str = os.environ.get("LOG_MSG_PREFIX")
+        self.LOG_MSG_APPENDIX: str = os.environ.get("LOG_MSG_APPENDIX")
+        self.MESSAGE_TOO_LONG_USER_MSG: str = os.environ.get("MESSAGE_TOO_LONG_USER_MSG")
+        self.CONVERSATION_START_LOG_MSG: str = os.environ.get("CONVERSATION_START_LOG_MSG")
+        self.CONVERSATION_RESET_LOG_MSG: str = os.environ.get("CONVERSATION_RESET_LOG_MSG")
+        self.MESSAGE_TOO_LONG_LOG_MSG: str = os.environ.get("MESSAGE_TOO_LONG_LOG_MSG")
+        self.CONSOLE_RESET_MSG: str = os.environ.get("CONSOLE_RESET_MSG")
+        self.STOP_LOG_MSG: str = os.environ.get("STOP_LOG_MSG")
+        self.START_LOG_MSG: str = os.environ.get("START_LOG_MSG")
+        self.I_WILL_CALL_YOU: str = os.environ.get("I_WILL_CALL_YOU")
+        self.ERROR_LOG_MSG: str = os.environ.get("ERROR_LOG_MSG")
+        self.REMOVE_LAST_MESSAGE_LOG_MSG: str = os.environ.get("REMOVE_LAST_MESSAGE_LOG_MSG")
+        self.TELEGRAM_IMAGE_CAPTION: str = os.environ.get("TELEGRAM_IMAGE_CAPTION")
