@@ -5,7 +5,6 @@ from pygments.formatters import TerminalFormatter
 from pygments.lexers import PythonLexer
 from modules.chatbot_base import ChatBot
 from modules.message import OpenAIMessage
-from modules.picture import Picture
 
 
 class ConsoleBot(ChatBot):
