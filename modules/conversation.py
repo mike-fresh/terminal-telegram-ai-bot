@@ -19,6 +19,11 @@ class Conversation:
                                                         f"{self.username}"
                                                         f"{self.config.LOG_MSG_APPENDIX}",
                                                         'system', 'system', 'system', 'log', self.chat_id)
+        self.conversation_reset_log_msg = OpenAIMessage(f"{self.config.LOG_MSG_PREFIX} "
+                                                        f"{self.config.CONVERSATION_RESET_LOG_MSG} "
+                                                        f"{self.username}"
+                                                        f"{self.config.LOG_MSG_APPENDIX}",
+                                                        'system', 'system', 'system', 'log', self.chat_id)
         self.setup_config_messages()
         self.setup_user_messages()
 
@@ -110,8 +115,4 @@ class Conversation:
         self.user_messages.clear()
         self.db.remove_conversation(self.chat_id)
         if logging:
-            self.system_log(OpenAIMessage(f"{self.config.LOG_MSG_PREFIX} "
-                                          f"{self.config.CONSOLE_RESET_MSG} "
-                                          f"{self.username}"
-                                          f"{self.config.LOG_MSG_APPENDIX}",
-                                          'system', 'system', 'system', self.chat_id))
+            self.system_log(self.conversation_reset_log_msg)

@@ -4,7 +4,7 @@ from modules.chatbot_base import ChatBot
 from modules.message import OpenAIMessage
 from modules.tools import clean_username
 from modules.picture import Picture
-
+from modules.conversation import Conversation
 
 class TelegramBot(ChatBot):
     def __init__(self) -> None:
@@ -24,8 +24,9 @@ class TelegramBot(ChatBot):
         async def reset_command(update: Update, context: ContextTypes.DEFAULT_TYPE) -> None:
             user = update.effective_user
             username = clean_username(user.full_name)
+            conversation = Conversation(str(update.effective_chat.id), username)
+            conversation.clear_messages()
             print(f"User {username} executed /reset command.")
-            self.db.remove_conversation(update.effective_chat.id)
             await update.message.reply_text(f"{self.config.CONSOLE_RESET_MSG}")
             # TODO: remove this print statement and log to database instead
 
