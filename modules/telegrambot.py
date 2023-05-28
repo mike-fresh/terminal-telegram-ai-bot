@@ -33,6 +33,8 @@ class TelegramBot(ChatBot):
             user_input = context.args[0]
             username = clean_username(user.full_name)
             picture = Picture(user_input)
+            # TODO: remove this print statement and log to database instead
+            # TODO: save the picture to the database
             print(f"User {username} executed /pic command.")
             with open(f"generated_image-{picture.timestamp_string}.png", "rb") as f:
                 await update.message.reply_photo(photo=f, caption=self.config.TELEGRAM_IMAGE_CAPTION)
