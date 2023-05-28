@@ -26,8 +26,8 @@ It started with 4 lines of code and essentially Chat-GPT wrote its own interface
 ## Installation
 
 ```bash
-git clone githublink
-cd project-name
+git clone https://github.com/mike-fresh/terminal-telegram-ai-bot
+cd terminal-telegram-ai-bot
 python3 -m venv venv
 source venv/bin/activate
 pip install -r requirements.txt
