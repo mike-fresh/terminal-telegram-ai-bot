@@ -41,7 +41,8 @@ class ConsoleBot(ChatBot):
 
     def reset(self) -> str:
         self._remove_conversation('system_console')
-        self._start_conversation(OpenAIMessage('', self.LOCAL_USERNAME, self.config.NAME, 'system', 'system_console'),
+        self._start_conversation(OpenAIMessage('', self.LOCAL_USERNAME, self.config.NAME,
+                                               'system', 'log', 'system_console'),
                                  logging=False)
         self._log_message(self.conversation_reset_log_msg)
         return f'{self.config.CONSOLE_RESET_MSG}'
