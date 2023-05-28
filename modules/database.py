@@ -82,7 +82,7 @@ class Database:
     def remove_conversation(self, chat_id: str) -> list:
         if self.check_conversation_exists(chat_id) is False:
             return []
-        conversation: list = self.get_messages_from_db(chat_id)
+        conversation: list = self.get_messages_from_db(chat_id, 'user')
         self.session.query(Message).filter_by(chat_id=chat_id).delete()
         self.session.commit()
         return conversation
