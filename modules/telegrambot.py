@@ -6,6 +6,7 @@ from modules.tools import clean_username
 from modules.picture import Picture
 from modules.conversation import Conversation
 
+
 class TelegramBot(ChatBot):
     def __init__(self) -> None:
         super().__init__()
