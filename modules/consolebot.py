@@ -77,11 +77,7 @@ class ConsoleBot(ChatBot):
                                                'user', 'user', 'system_console')
         answer_from_openai: OpenAIMessage = self.process_message(msg_obj)
         highlighted_reply: str = self.format_codeblock(answer_from_openai.content)
-        current_token_count: int = self.db.get_current_token_count(answer_from_openai.chat_id)
-        return highlighted_reply + \
-            f'\n This message token count: {answer_from_openai.token_count}\n' + \
-            f'Total session token count: {current_token_count}\n' + \
-            self.SEPARATOR_LINE + "\n"
+        return highlighted_reply + self.SEPARATOR_LINE + "\n"
 
     @staticmethod
     def format_codeblock(text: str) -> str:

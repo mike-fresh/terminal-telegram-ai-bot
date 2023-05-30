@@ -9,8 +9,6 @@ class ChatPartner:
 
     def talk_to_openai(self, messages: list[OpenAIMessage], response_max_tokens: int) -> dict:
         response: dict = self._get_openai_response(messages, response_max_tokens)
-        print(f'prompt: {response["usage"]["prompt_tokens"]}')
-        print(f'completion: {response["usage"]["completion_tokens"]}')
         return response
 
     def _get_openai_response(self, messages: list[OpenAIMessage], max_tokens: int) -> dict:
