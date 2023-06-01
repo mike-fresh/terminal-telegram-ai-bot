@@ -1,3 +1,5 @@
+import signal
+import sys
 from telegram import ForceReply, Update, MessageEntity
 from telegram.ext import Application, CommandHandler, ContextTypes, MessageHandler, filters
 from modules.chatbot_base import ChatBot
@@ -69,6 +71,13 @@ class TelegramBot(ChatBot):
             else:
                 print(f"User {username} sent message to {self.config.NAME} in chat id {chat_id}.")
                 await update.message.reply_text(self.send_message(update))
+
+        def shutdown():
+            print(self.config.TELEGRAM_STOPPED_MESSAGE.format(name=self.config.NAME))
+            sys.exit(0)
+
+        signal.signal(signal.SIGINT, shutdown)
+
         try:
             application: Application = Application.builder().token(self.config.TELEGRAM_BOT_TOKEN).build()
             application.add_handler(CommandHandler("start", start_command))
@@ -78,9 +87,10 @@ class TelegramBot(ChatBot):
             application.add_handler(MessageHandler(filters.TEXT & ~filters.COMMAND, answer_to_message))
             print(self.config.TELEGRAM_STARTED_MESSAGE.format(name=self.config.NAME))
             application.run_polling()
-            print(self.config.TELEGRAM_STOPPED_MESSAGE.format(name=self.config.NAME))
-        except KeyboardInterrupt:
-            print(self.config.TELEGRAM_STOPPED_MESSAGE.format(name=self.config.NAME))
+        except Exception as e:
+            print(f"{self.config.ERROR_LOG_MSG} {e}")
+        finally:
+            shutdown()
 
     def send_message(self, update: Update) -> str or None:
         user = update.effective_user
