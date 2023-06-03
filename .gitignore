@@ -21,6 +21,7 @@ improvements/
 lib/
 lib64/
 parts/
+sample_images/
 sdist/
 var/
 wheels/
