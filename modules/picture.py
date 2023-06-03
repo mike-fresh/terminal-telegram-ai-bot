@@ -16,5 +16,7 @@ class Picture:
         self.image_data = requests.get(self.image_url).content
         self.timestamp_string = datetime.datetime.now().strftime("%Y-%m-%d-%H-%M-%S")
         self.picture_file = f"generated_image-{self.timestamp_string}.png"
+
+    def write(self):
         with open(self.picture_file, "wb") as f:
             f.write(self.image_data)
